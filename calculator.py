@@ -4,48 +4,62 @@ import logging
 
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s %(message)s', filename="calculator_logs.log")
 
-def dataForAddAndSubstract():
-    print("Wprowadzaj kolejno liczby zatwierdzając Enterem. Wpisując 0 kończysz wprowadzanie.")
-    inputData = 1
+def data_for_add_and_substract():
+    print("Wprowadzaj ilość liczb, na których chcesz prowadzić działanie")
+    total_ammount_of_numbers = int(input())
+    ordinal_number = 1
     result = []
-    count = 1;
-    while(inputData !=0):
-        print("Podaj", count, " liczbę")
-        inputData = int(input()) 
-        logging.info("Liczba %s to: %s", count, inputData )
-        result.append(inputData)
-        count = count +1
+    input_data =0
     
+    while(ordinal_number <= total_ammount_of_numbers): 
+        print("Podaj", ordinal_number, " liczbę")
+        input_data = int(input())
+        logging.info("Liczba %s to: %s",  ordinal_number, input_data )
+       
+        result.append(input_data)
+        ordinal_number = ordinal_number +1
+        
     return result
 
-def dataForMultiplyAndDivinde():
+def data_for_multiply_and_divide():
     print("Podaj 1 liczbę")
-    numOne = int(input())
+    num_one = int(input())
     print("Podaj 2 liczbę")
-    numTwo = int(input())
+    num_two = int(input())
 
-    return numOne, numTwo
+    return num_one, num_two
 
-def add(numbers):
+
+def add():
     logging.info("Wybrano dodawanie.")
-
+    numbers = data_for_add_and_substract()
+    
     return sum(numbers)
 
-def substract(numbers):
+def substract():
+    numbers = data_for_add_and_substract()
     logging.info("Wybrano odejmowanie.")
-    firstAndFinalNumber = numbers[0]
+    first_number = numbers[0]
 
-    return firstAndFinalNumber - sum(numbers[1:])
+    return first_number - sum(numbers[1:])
 
-def multiply(numberOne, numberTwo):
+def multiply():
     logging.info("Wybrano mnożenie.")
+    number_one, number_two =  data_for_multiply_and_divide()
 
-    return numberOne * numberTwo
+    return number_one * number_two
 
-def divine(numberOne, numberTwo):
+def divide():
     logging.info("Wybrano dzielenie.")
+    
+    number_one, number_two =  data_for_multiply_and_divide()
 
-    return numberOne / numberTwo
+    return number_one / number_two
+
+def problem(): 
+    logging.error("Nieprawidłowy format wpisywanych liczb. ")
+    print("Nieprawidłowy format wpisywanych liczb. ")
+    quit()
 
 
 ############################# MAIN ############################# 
@@ -54,28 +68,31 @@ logging.debug("------------------------")
 logging.debug("NOWE DZIAŁANIE")
 logging.debug("------------------------")
 
-print("Podaj działanie, posługując się odpowiednią liczbą: 1 Dodawanie, 2 Odejmowanie, 3 Mnożenie, 4 Dzielenie:")
-finalResult = 0
-selectNumber = int(input())
-if selectNumber == 1:
-    listOfNumbers = dataForAddAndSubstract()
-    finalResult = add(listOfNumbers)
-elif(selectNumber == 2):
-    listOfNumbers = dataForAddAndSubstract()
-    finalResult = substract(listOfNumbers)
-elif(selectNumber == 3):
-    numOne, numTwo = dataForMultiplyAndDivinde()
-    finalResult = multiply(numOne, numTwo)
-elif(selectNumber == 4):
-    numOne, numTwo = dataForMultiplyAndDivinde()
-    finalResult = divine(numOne, numTwo)
-else:
-    logging.error("Nieprawidłowy format wpisywanych liczb. ")
-    print("Nieprawidłowy format wpisywanych liczb. ")
-    quit()
 
-print("Wynik to: ", finalResult)
-logging.debug("Wynik to: %s" % finalResult)
+print("Podaj działanie, posługując się odpowiednią liczbą: 1 Dodawanie, 2 Odejmowanie, 3 Mnożenie, 4 Dzielenie:")
+options = { 1: add, 2: substract, 3: multiply, 4:divide }
+
+
+final_result =options.get(int(input()), problem)()
+
+
+# if select_number == 1:
+#     list_of_numbers = data_for_add_and_substract()
+#     final_result = add(list_of_numbers)
+# elif(select_number == 2):
+#     list_of_numbers = data_for_add_and_substract()
+#     final_result = substract(list_of_numbers)
+# elif(select_number == 3):
+#     num_one, num_two = data_for_multiply_and_divide()
+#     final_result = multiply(num_one, num_two)
+# elif(select_number == 4):
+#     num_one, num_two = data_for_multiply_and_divide()
+#     final_result = divide(num_one, num_two)
+# else:
+#     
+
+print("Wynik to: ", final_result)
+logging.debug("Wynik to: %s" % final_result)
 
 logging.debug("------------------------")
 logging.debug("KONIEC DZIALANIA")
