@@ -9,12 +9,12 @@ def data_for_add_and_substract():
     total_ammount_of_numbers = int(input())
     ordinal_number = 1
     result = []
-    input_data =0
+    input_data = 0
     
-    while(ordinal_number <= total_ammount_of_numbers): 
+    while ordinal_number <= total_ammount_of_numbers: 
         print("Podaj", ordinal_number, " liczbę")
         input_data = int(input())
-        logging.info("Liczba %s to: %s",  ordinal_number, input_data )
+        logging.info("Liczba %s to: %s", ordinal_number, input_data )
        
         result.append(input_data)
         ordinal_number = ordinal_number +1
@@ -45,14 +45,14 @@ def substract():
 
 def multiply():
     logging.info("Wybrano mnożenie.")
-    number_one, number_two =  data_for_multiply_and_divide()
+    number_one, number_two = data_for_multiply_and_divide()
 
     return number_one * number_two
 
 def divide():
     logging.info("Wybrano dzielenie.")
     
-    number_one, number_two =  data_for_multiply_and_divide()
+    number_one, number_two = data_for_multiply_and_divide()
 
     return number_one / number_two
 
@@ -70,30 +70,13 @@ logging.debug("------------------------")
 
 
 print("Podaj działanie, posługując się odpowiednią liczbą: 1 Dodawanie, 2 Odejmowanie, 3 Mnożenie, 4 Dzielenie:")
-options = { 1: add, 2: substract, 3: multiply, 4:divide }
+options = { 1: add, 2: substract, 3: multiply, 4: divide }
 
-
-final_result =options.get(int(input()), problem)()
-
-
-# if select_number == 1:
-#     list_of_numbers = data_for_add_and_substract()
-#     final_result = add(list_of_numbers)
-# elif(select_number == 2):
-#     list_of_numbers = data_for_add_and_substract()
-#     final_result = substract(list_of_numbers)
-# elif(select_number == 3):
-#     num_one, num_two = data_for_multiply_and_divide()
-#     final_result = multiply(num_one, num_two)
-# elif(select_number == 4):
-#     num_one, num_two = data_for_multiply_and_divide()
-#     final_result = divide(num_one, num_two)
-# else:
-#     
+final_result = options.get(int(input()), problem)()
+   
 
 print("Wynik to: ", final_result)
 logging.debug("Wynik to: %s" % final_result)
-
 logging.debug("------------------------")
 logging.debug("KONIEC DZIALANIA")
 logging.debug("------------------------")
