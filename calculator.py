@@ -69,7 +69,7 @@ logging.debug("NOWE DZIAŁANIE")
 logging.debug("------------------------")
 
 
-print("Podaj działanie, posługując się odpowiednią liczbą: 1 Dodawanie, 2 Odejmowanie, 3 Mnożenie, 4 Dzielenie:")
+print("Podaj działanie, posługując się odpowiednią liczbą: 1 Dodawanie, 2 Odejmowanie, 3 Mnożenie, 4 Dzielenie")
 options = { 1: add, 2: substract, 3: multiply, 4: divide }
 
 final_result = options.get(int(input()), problem)()
